@@ -1,21 +1,35 @@
-.header {
+/* .header {
   position: absolute;
   width: 100%;
   height: 65px;
   left: 0px;
   top: 0px;
   background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+} */
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 65px;
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+  color: white;
+  padding: 20px;
 }
 
-.face {
+/* .face {
   position: absolute;
   width: 31.31px;
   height: 26.22px;
   left: 20px;
   top: 19px;
+} */
+
+.face {
+  height: 100%;
+  margin-right: 6px;
 }
 
-.meme {
+/* .meme {
   position: absolute;
   width: 140.79px;
   height: 24px;
@@ -28,9 +42,14 @@
   font-size: 20.7482px;
   line-height: 24px;
   color: #ffffff;
+} */
+
+.meme {
+  font-size: 20px;
+  margin-right: auto;
 }
 
-.title {
+/* .title {
   position: absolute;
   width: 189px;
   height: 14px;
@@ -45,4 +64,9 @@
   text-align: right;
 
   color: #ffffff;
+} */
+
+.title {
+  font-size: 12px;
+  font-weight: 500;
 }

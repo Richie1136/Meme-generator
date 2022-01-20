@@ -6,7 +6,7 @@ const Header = () => {
     <div className='header'>
       <img className='face' src={face} alt='face' />
       <h2 className='meme'>MemeGenerator</h2>
-      <h2 className='title'>React Course - Project 3</h2>
+      <h4 className='title'>React Course - Project 3</h4>
     </div>
   )
 };
