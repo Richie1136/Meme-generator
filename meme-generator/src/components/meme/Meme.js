@@ -2,11 +2,23 @@ import './Meme.css'
 import memesData from '../../memeData'
 import { useState } from 'react'
 
-console.log(memesData)
 
 const Meme = () => {
 
-  const [memeImage, setMemeImage] = useState('');
+  const [meme, setMeme] = useState({
+    topText: '',
+    bottomText: '',
+    randomImage: "http://i.imgflip.com/1bij.jpg"
+  });
+  const [allMemeImages, setAllMemeImages] = useState(memesData);
+
+  /**
+ * Challenge: 
+ * 1. Set up the text inputs to save to
+ *    the `topText` and `bottomText` state variables.
+ * 2. Replace the hard-coded text on the image with
+ *    the text being saved to state.
+ */
 
   /**
        * Challenge: Save the random meme URL in state
@@ -20,68 +32,38 @@ const Meme = () => {
        */
 
   const getMemeImage = () => {
-    const memesArray = memesData.data.memes
+    const memesArray = allMemeImages.data.memes
     const randomNumber = Math.floor(Math.random() * memesArray.length)
-    setMemeImage(memesArray[randomNumber].url)
+    const url = memesArray[randomNumber].url
+    setMeme(prevMeme => ({
+      ...prevMeme,
+      randomImage: url
+    }))
+  }
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setMeme(prevstate => ({
+      ...prevstate,
+      [name]: value
+    }))
   }
 
 
   return (
     <main>
       <div className='form'>
-        <input className='inputs' type='text' placeholder='Shut up' />
-        <input className='inputs' type='text' placeholder='and take my money' />
+        <input className='form-input' type='text' name='topText' value={meme.topText} onChange={handleChange} placeholder='Top text' />
+        <input className='form-input' type='text' name='bottomText' value={meme.bottomText} onChange={handleChange} placeholder='Bottom text' />
         <button onClick={getMemeImage} className='form-button'>Get a new name image 🖼</button>
-        <img src={memeImage} />
+      </div>
+      <div className='meme'>
+        <img className='meme-image' src={meme.randomImage} />
+        <h2 className='meme-text top'>{meme.topText}</h2>
+        <h2 className='meme-text bottom'>{meme.bottomText}</h2>
       </div>
     </main>
   )
 };
 
 export default Meme;
-
-
-
-
-// import React from "react"
-// // import memesData from "../memesData.js"
-
-// export default function Meme() {
-//   const [memeImage, setMemeImage] = React.useState("")
-//   /**
-//    * Challenge: Save the random meme URL in state
-//    * - Below the div.form, add an <img /> and set the
-//    *   src to the new `memeImage` state you created
-//    */
-
-//   function getMemeImage() {
-//     const memesArray = memesData.data.memes
-//     const randomNumber = Math.floor(Math.random() * memesArray.length)
-//     setMemeImage(memesArray[randomNumber].url)
-
-//   }
-
-//   return (
-//     <main>
-//       <div className="form">
-//         <input
-//           type="text"
-//           placeholder="Top text"
-//           className="form--input"
-//         />
-//         <input
-//           type="text"
-//           placeholder="Bottom text"
-//           className="form--input"
-//         />
-//         <button
-//           className="form--button"
-//           onClick={getMemeImage}
-//         >
-//           Get a new meme image 🖼
-//         </button>
-//       </div>
-//       <img src={memeImage} />
-//     </main>
-//   )
-// }
